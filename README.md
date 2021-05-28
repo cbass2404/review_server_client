@@ -8,7 +8,7 @@ A react.js app using ... ... to create users from a google oauth authorization a
 
 ---
 
-1. Traverse to the folder you want the files in your terminal then run the following command:
+1. Traverse to the folder you want to store your files in, then run the following command:
 
 ```
 $ git clone https://github.com/cbass2404/review_server_client
