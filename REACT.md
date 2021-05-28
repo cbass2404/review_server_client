@@ -46,8 +46,8 @@ const App = () => {
                 <Header />
                 <Switch>
                     <Route exact path="/" component={Landing} />
-                    <Route exact path="/dashboard" component={Dashboard} />
-                    <Route exact path="/surveynew" component={SurveyNew} />
+                    <Route exact path="/surveys" component={Dashboard} />
+                    <Route path="/surveys/new" component={SurveyNew} />
                     <Route component={NoMatch} />
                 </Switch>
             </Router>
@@ -57,3 +57,5 @@ const App = () => {
 
 export default App;
 ```
+
+_Inside router, anything outside the switch is static, inside switch is dynamic. Exact is only necessary if parts of the paths match_
