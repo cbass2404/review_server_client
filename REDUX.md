@@ -59,3 +59,47 @@ import reducers from "./reducers";
 
 const store = createStore(reducers, {}, applyMiddleware());
 ```
+
+6. Install middleware in root directory:
+
+```
+$ npm install --save redux-thunk
+```
+
+7. Import redux-thunk and apply middleware:
+
+```javascript
+import reduxThunk from "redux-thunk";
+
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+```
+
+_reduxthunk gives direct access to dispatch function in redux. it inspects returns from functions in action and passes through dispatch to reducer_
+
+8. Setup actions library, in component directory create folder called actions and create a new file in it called index.js:
+
+```javascript
+import axios from "axios";
+import { FETCH_USER } from "./types";
+
+const fetchUser = () => {
+    axios.get("/api/current_user");
+};
+```
+
+9. Setup types file in actions folder as well:
+
+```javascript
+export const FETCH_USER = "fetch_user";
+```
+
+10. Connect files needing access to the global state as follows:
+
+```javascript
+import { connect } from "react-redux";
+import * as actions from "../actions";
+
+export default connect(null, actions)(App);
+```
+
+_the connect function takes two args, mapstatetoprops function and action creators_
