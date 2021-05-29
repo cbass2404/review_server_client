@@ -59,3 +59,9 @@ export default App;
 ```
 
 _Inside router, anything outside the switch is static, inside switch is dynamic. Exact is only necessary if parts of the paths match_
+
+5. Links vs a tags:
+
+    > Links navigate to a new react route internally
+
+    > A tags navigate to a new html document, mostly used for external links in react.

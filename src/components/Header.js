@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Header = ({ auth }) => {
@@ -23,9 +24,9 @@ const Header = ({ auth }) => {
     return (
         <nav>
             <div className="nav-wrapper">
-                <a className="left brand-logo" href="/">
+                <Link to={auth ? "/surveys" : "/"} className="left brand-logo">
                     Emaily
-                </a>
+                </Link>
                 <ul className="right">{renderContent()}</ul>
             </div>
         </nav>
