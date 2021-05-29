@@ -5,11 +5,10 @@ import * as actions from "../actions";
 
 // local files
 import Header from "./Header";
-
+import Landing from "./Landing";
 // temp components
 const Dashboard = () => <h2>Dashboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
-const Landing = () => <h2>Landing</h2>;
 const NoMatch = () => <h2>Page not Found</h2>;
 
 const App = ({ fetchUser }) => {
