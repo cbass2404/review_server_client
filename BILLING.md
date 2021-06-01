@@ -105,9 +105,13 @@ app.use(bodyParser.json());
 ```javascript
 const keys = require("../config/keys");
 const stripe = require("stripe")(keys.STRIPE_SECRET_KEY);
+const requireLogin = require("../middlewares/requireLogin");
 
 module.exports = (app) => {
-    app.post("/api/stripe", async (req, res) => {
+    app.post("/api/stripe", requireLogin, async (req, res) => {
+        if (!req.user) {
+            return res.status(401).send({ error: "You must log in!" });
+        }
         const charge = await stripe.charges.create({
             amount: 500,
             currency: "usd",
@@ -120,5 +124,17 @@ module.exports = (app) => {
 
         res.send(user);
     });
+};
+```
+
+_Be sure to set up middleware to check for user as below_
+
+```javascript
+module.exports = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).send({ error: "You must log in!" });
+    }
+
+    next();
 };
 ```
