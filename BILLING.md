@@ -49,6 +49,8 @@ const Payments = () => {
 export default Payments;
 ```
 
+_button child component is only used to change the default appearance of the stripe button_
+
 4. Import the component to wherever you want it to be in your app and set it up to be used:
 
 ```javascript
@@ -56,3 +58,5 @@ import PaymentsComponent from "./paymentscomponent";
 
 <PaymentsComponent />;
 ```
+
+5. Stripe will return a token to your app with data about the transaction and user.
