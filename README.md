@@ -14,6 +14,8 @@ A react.js app using ... ... to create users from a google oauth authorization a
 $ git clone https://github.com/cbass2404/review_server_client
 ```
 
+_For the review server documentation and files go to: https://github.com/cbass2404/review_example_server_
+
 2. CD into the folder...
 
 ```
@@ -42,6 +44,7 @@ Route               Type    Auth    Use
 /auth/google        GET     No      !args, google oauth link
 /api/current_user   GET     Yes     !args, checks cookie in browser
 /api/logout         GET     Yes     !args, deletes cookie in browser
+/api/stripe         POST    YES     Token, adds survey credits on successful payments
 ```
 
 ## Server Files
