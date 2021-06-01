@@ -13,7 +13,7 @@
 -   possible to avoid monthly payments/recurring payments and multiple plans
 -   fraud and chargebacks are a pain
 
-## Instructions
+## Instructions for CLIENT
 
 ---
 
@@ -60,3 +60,65 @@ import PaymentsComponent from "./paymentscomponent";
 ```
 
 5. Stripe will return a token to your app with data about the transaction and user.
+
+## Instructions for SERVER
+
+---
+
+https://stripe.com/docs/api
+
+1. Install stripes library in main directory:
+
+```
+$ npm install --save stripe
+```
+
+2. Require the library into your project:
+
+```javascript
+const keys = require("../config/keys");
+const stripe = require("stripe")(keys.STRIPE_SECRET_KEY);
+```
+
+3. Use body-parser to parse returned token into body format:
+
+```
+$ npm install --save body-parser
+```
+
+_https://www.npmjs.com/package/body-parser_
+
+> In index.js file require in body-parser and tell the app to use it:
+
+```javascript
+const keys = require("./config/keys");
+const express = require("express");
+const mongoose = require("mongoose");
+const cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+```
+
+4. Be sure to handle the stripe charges in route, it should have similar settings to the client side token sent to backend:
+
+```javascript
+const keys = require("../config/keys");
+const stripe = require("stripe")(keys.STRIPE_SECRET_KEY);
+
+module.exports = (app) => {
+    app.post("/api/stripe", async (req, res) => {
+        const charge = await stripe.charges.create({
+            amount: 500,
+            currency: "usd",
+            description: "$5 for 5 surveys",
+            source: req.body.id,
+        });
+
+        req.user.credits += 5;
+        const user = await req.user.save();
+
+        res.send(user);
+    });
+};
+```
